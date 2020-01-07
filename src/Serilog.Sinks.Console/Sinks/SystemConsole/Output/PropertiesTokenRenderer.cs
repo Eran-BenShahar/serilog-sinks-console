@@ -60,6 +60,11 @@ namespace Serilog.Sinks.SystemConsole.Output
                 .Select(p => new LogEventProperty(p.Key, p.Value));
 
             var value = new StructureValue(included);
+            
+            if (value.Properties.Count == 0)
+            {
+                return;
+            }
 
             if (_token.Alignment == null || !_theme.CanBuffer)
             {
